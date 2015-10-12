@@ -9,7 +9,7 @@ var personScheme ={
     email:String
 }
 
-var Person = mongoose.model('Person', personScheme, 'people')
+var Person = mongoose.model('Person', personScheme, 'people') // 변수 이름(디비에 접근할), 스키마(접근할 디비의 스키마), 컬렉션 이름.  
 
 var app = express()
 

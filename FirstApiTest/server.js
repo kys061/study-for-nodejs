@@ -7,4 +7,6 @@ app.use('/', express.static('./'));
     //res.send("index.html");
 //})
 
-app.listen(3001);
+var server = app.listen(3001, function(){
+  console.log('server running http://localhost:' + server.address().port)
+});
