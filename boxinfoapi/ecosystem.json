@@ -1,0 +1,7 @@
+{
+  "apps": [{
+    "name": "Boxinfo",
+    "script": "F:/Study/node/boxinfoapi/server.js"
+    }
+  ]
+}

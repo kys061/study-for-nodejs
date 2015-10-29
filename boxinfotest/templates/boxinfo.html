@@ -1,0 +1,93 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+
+      <a class="navbar-brand" href="./index.html">Box Info</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" ng-model="model.search">
+        </div>
+        <button type="submit" class="btn btn-default">검색</button>
+      </form>
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+
+        </div>
+        <button type="submit" class="btn btn-default" ng-click="startCreating();">Create</button>
+        <button type="submit" class="btn btn-default" ng-click="cancelCreating();">Cancel</button>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<hr>
+<!-- CREATE FORM -->
+<form class="form-horizontal" ng-show="isCreating" ng-submit="createBoxInfo(newBoxinfo);" novalidate>
+  <div class="form-group">
+    <label for="boxname" class="col-sm-2 control-label">Box Name</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="boxname" placeholder="Box Name" ng-model="newBoxinfo.boxname">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="boxtype" class="col-sm-2 control-label">Box Type</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="boxtype" placeholder="Box Type" ng-model="newBoxinfo.boxtype">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="boxip" class="col-sm-2 control-label">Box IP</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="boxtype" placeholder="Box IP" ng-model="newBoxinfo.boxip">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="boxgateway" class="col-sm-2 control-label">Box Gateway</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="boxgateway" placeholder="Box Gateway" ng-model="newBoxinfo.boxgateway">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="license" class="col-sm-2 control-label">License</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="license" placeholder="License" ng-model="newBoxinfo.license">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-8 col-sm-11">
+      <button type="submit" class="btn btn-default" ng-click="cancelCreating();">Create</button>
+      <button type="button" class="btn btn-default" ng-click="cancelCreating();">
+        Cancel
+      </button>
+    </div>
+  </div>
+  <hr>
+</form>
+<div class="table-responsive">
+ <table class="table table-bordered ">
+  <tr class="info">
+    <th>BOX NAME</th>
+    <th>LICENSE</th>
+    <th>BOX TYPE</th>
+    <th>BOX IP</th>
+    <th>BOX GATEWAY</th>
+  </tr>
+  <tr ng-repeat="box in boxinfo | filter:model.search" >
+    <td><span ng-class="{'searchactive':isSelectedBoxinfo(box, model.search)}">{{box.boxname}}</span></td>
+    <td><span ng-class="{'searchactive':isSelectedBoxinfo(box, model.search)}">{{box.license}}</span></td>
+    <td><span ng-class="{'searchactive':isSelectedBoxinfo(box, model.search)}">{{box.boxtype}}</span></td>
+    <td>
+        http : <a ng-href="http://{{box.boxip}}:4242" style="text-decoration: none;" target="_blank"><span ng-class="{'searchactive':isSelectedBoxinfo(box, model.search)}">{{box.boxip}}</span></a> |
+        https : <a ng-href="https://{{box.boxip}}:4242" style="text-decoration: none;" target="_blank"><span ng-class="{'searchactive':isSelectedBoxinfo(box, model.search)}">{{box.boxip}}</span></a>
+        </td>
+    <td><span ng-class="{'searchactive':isSelectedBoxinfo(box, model.search)}">{{box.boxgateway}}</span></td>
+  </tr>
+ </table>
+</div>
