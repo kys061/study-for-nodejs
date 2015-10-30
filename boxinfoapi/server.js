@@ -7,6 +7,7 @@ var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var Boxinfo = require('./db').Boxinfo
 
+
 var jwtSecret = 'dfaskdjfk123/fasdkj4kjf';
 
 var user = {
