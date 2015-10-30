@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var Boxinfo = require('./db').Boxinfo
+var Users = require('./db').Users
 
 
 var jwtSecret = 'dfaskdjfk123/fasdkj4kjf';
@@ -98,3 +99,35 @@ function handleError(response){
   console('Error : ' + response.data)
   // console.log(response);
 }
+
+
+// ==========================================================================
+
+
+// create a user a new user
+// var testUser = new Users({
+//     username: "test",
+//     password: "test"
+// });
+
+// save user to database
+// testUser.save(function(err) {
+//     if (err) throw err;
+
+// fetch user and test password verification
+Users.findOne({ username: 'test' }, function(err, user) {
+    if (err) throw err;
+
+    // test a matching password
+    user.comparePassword('test', function(err, isMatch) {
+        if (err) throw err;
+        console.log('Password123:', isMatch); // -&gt; Password123: true
+    });
+
+    // test a failing password
+    user.comparePassword('123Password', function(err, isMatch) {
+        if (err) throw err;
+        console.log('123Password:', isMatch); // -&gt; 123Password: false
+    });
+})
+// });
